@@ -14,6 +14,7 @@ var (
 	FailedToSendICMPMessage  = fmt.Errorf("failed to send ICMP message")
 	FailedToParseICMPMessage = fmt.Errorf("failed to parse ICMP message")
 	UnknownICMPMessageType   = fmt.Errorf("unknown ICMP message type")
+	DestinationUnreachable   = fmt.Errorf("destination unreachable")
 )
 
 func Send(packetConn *icmp.PacketConn, destAddress string, seq int, data []byte) error {
@@ -62,6 +63,8 @@ func Receive(packetConn *icmp.PacketConn) error {
 			return nil
 		}
 		return FailedToParseICMPMessage
+	case ipv4.ICMPTypeDestinationUnreachable:
+		return DestinationUnreachable
 	default:
 		return UnknownICMPMessageType
 	}
@@ -84,7 +87,7 @@ func InteractiveSendAndReceive(destAddress string) {
 			case <-quitChan:
 				return
 			default:
-				err = Receive(packetConn)
+				err := Receive(packetConn)
 				if err != nil {
 					fmt.Println(err)
 				}
