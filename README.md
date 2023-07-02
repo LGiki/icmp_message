@@ -9,10 +9,16 @@ For more details, please see [https://lgiki.net/post/icmp_message/](https://lgik
 
 # Usage
 
+Before using icmp_message, it is necessary to disable the Linux kernel's automatic response to ICMP Echo requests:
+
+```
+# echo "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all
+```
+
 The usage of icmp_message is very simple:
 
-```bash
-icmp_message host
+```
+# icmp_message host
 ```
 
 Assuming there are two computers, A and B, with IP addresses 192.168.1.1 and 192.168.1.2 respectively. To exchange messages using the ICMP protocol between A and B, you can execute the command `icmp_message 192.168.1.2` on A and `icmp_message 192.168.1.1`on B.
