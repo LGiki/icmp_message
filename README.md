@@ -5,7 +5,7 @@ For more details, please see [https://lgiki.net/post/icmp_message/](https://lgik
 
 # Screenshot
 
-![icmp_message](https://github.com/LGiki/icmp_message/assets/20807713/e82e9622-88b7-48e0-8f20-a4391e238b73)
+![icmp_message](https://github.com/LGiki/icmp_message/assets/20807713/38c5e9a9-6d0a-4c51-b17a-e4e43134461d)
 
 # Usage
 
