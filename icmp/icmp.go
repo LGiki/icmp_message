@@ -89,7 +89,7 @@ func InteractiveSendAndReceive(destAddress string) {
 				return
 			default:
 				err := Receive(packetConn)
-				if err != nil {
+				if err != nil && err != DestinationUnreachable {
 					fmt.Println(err)
 				}
 			}
