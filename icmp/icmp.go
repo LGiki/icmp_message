@@ -1,6 +1,7 @@
 package icmp
 
 import (
+	"bufio"
 	"fmt"
 	"golang.org/x/net/icmp"
 	"golang.org/x/net/ipv4"
@@ -95,13 +96,9 @@ func InteractiveSendAndReceive(destAddress string) {
 		}
 	}()
 
-	var message string
-	for {
-		_, err = fmt.Scanln(&message)
-		if err != nil {
-			fmt.Println(err)
-			break
-		}
+	inputs := bufio.NewScanner(os.Stdin)
+	for inputs.Scan() {
+		message := inputs.Text()
 		err = Send(packetConn, destAddress, 0, []byte(message))
 		if err != nil {
 			fmt.Println(err)
